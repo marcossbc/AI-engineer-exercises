@@ -1,0 +1,13 @@
+- AI is shifting from narrow predictors to a general-purpose capability embedded across software, devices, and physical systems; progress will compound via many incremental advances.
+- Three arcs define the next decade: more autonomous, tool-using agents; mounting compute/data and energy constraints; and a societal push to govern safety, equity, and benefits.
+- Today’s state: multimodal foundation models; agents that call tools/APIs; growing on-device AI; advancing robotics; and “copilotized” software development.
+- Near-term tech: stronger agentic planning and self-correction; governed, provenance-rich retrieval; efficiency via sparsity/quantization/MoE; synthetic data with careful curation; ubiquitous multimodality and voice.
+- Infra bottlenecks: accelerators, high-bandwidth memory, and interconnects; systems-level optimizations; data center power/cooling constraints; digital accelerators dominate near term.
+- Capabilities improve with tool grounding and verification, though brittleness and hallucinations persist; interpretability advances but guarantees remain limited.
+- Impacts: faster iteration drives productivity; task-level automation reshapes jobs; risks of concentration and inequality; education and creative sectors face integrity and attribution challenges.
+- Governance: risk-tiered regulation, provenance/watermarking, secure ML supply chains, nuanced open/closed trade-offs, and unresolved IP/data rights.
+- Sector outlooks: gains in healthcare, R&D, climate/energy, finance, cybersecurity, and public services—contingent on validation, integration, and governance.
+- Safer AI: combine alignment methods (RLHF/RLAIF), grounding via tools/retrieval, operational evals/red-teaming, and policy constraints (RBAC, gating, sandboxing).
+- Strategies: start with bounded workflows, invest in data/governance, use multi-model stacks, keep humans-in-the-loop, treat AI security as board-level; policymakers fund evals/standards and workforce transition; researchers focus on verifiable, efficient, interpretable systems.
+- Scenarios: broad acceleration; fragmented progress due to constraints; or shocks prompting tighter controls and verified workflows.
+- Leaders will excel at data stewardship, systems integration, trust architecture, cross-functional talent, and energy/compute strategy; durable value comes from grounded, tool-using, verifiable systems embedded in resilient processes.
