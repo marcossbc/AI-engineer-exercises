@@ -24,24 +24,13 @@ export async function POST(req: Request) {
         }),
 
         execute: async ({ location }) => {
-          const apiKey = process.env.WEATHER_API_KEY;
-
-          const response = await fetch(
-            `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${encodeURIComponent(
-              location
-            )}`
+          const temperature = Math.round(
+            Math.random() * (90 - 32) + 32
           );
-
-          if (!response.ok) {
-            throw new Error("Failed to fetch weather data");
-          }
-
-          const data = await response.json();
 
           return {
             location,
-            temperature: data.current.temp_c,
-            condition: data.current.condition.text,
+            temperature,
           };
         },
       }),

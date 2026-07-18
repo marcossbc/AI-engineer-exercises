@@ -2,104 +2,77 @@
 
 import { useChat } from '@ai-sdk/react';
 import { useState } from 'react';
-import { DefaultChatTransport } from 'ai';
 
 export default function Chat() {
   const [input, setInput] = useState('');
-
-  const { messages, sendMessage } = useChat({
-    transport: new DefaultChatTransport({
-      api: '/api/chat',
-    }),
-  });
+  const { messages, sendMessage } = useChat();
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col w-full max-w-md mx-auto py-24">
+      {messages.map((message) => (
+        <div key={message.id} className="mb-4">
+          <strong>{message.role === 'user' ? 'User: ' : 'AI: '}</strong>
 
-      <div className="text-center py-6 border-b">
-        <h1 className="text-3xl font-bold mb-2">AI SDK v5 Chat</h1>
-        <p className="text-gray-600">Streaming chat example</p>
-      </div>
+          {message.parts.map((part, index) => {
+            switch (part.type) {
+              case 'text':
+                return (
+                  <p key={index} className="mt-1 whitespace-pre-wrap">
+                    {part.text}
+                  </p>
+                );
 
+              case 'tool-weather':
+                // Weli output ma iman
+                if (part.state !== 'output-available') {
+                  return (
+                    <div
+                      key={index}
+                      className="mt-2 rounded-lg bg-gray-200 p-3 text-black"
+                    >
+                      ⏳ Loading weather...
+                    </div>
+                  );
+                }
 
-      <div className="flex-1 overflow-y-auto p-6">
-        <div className="max-w-4xl mx-auto space-y-4">
+                // Output waa diyaar
+                return (
+                  <div
+                    key={index}
+                    className="mt-2 rounded-lg bg-blue-100 p-3 text-black"
+                  >
+                    <p>📍 Location: {part.output.location}</p>
+                    <p>🌡️ Temperature: {part.output.temperature}°F</p>
+                  </div>
+                );
 
-          {messages.map(message => (
-            <div
-              key={message.id}
-              className={`flex ${
-                message.role === 'user'
-                  ? 'justify-end'
-                  : 'justify-start'
-              }`}
-            >
-
-              <div
-                className={`max-w-md px-4 py-3 rounded-lg ${
-                  message.role === 'user'
-                    ? 'bg-rose-500 text-white'
-                    : 'bg-gray-100 text-gray-900'
-                }`}
-              >
-
-                {message.parts.map((part, i) => {
-                  if (part.type === 'text') {
-                    return (
-                      <div key={i} className="whitespace-pre-wrap">
-                        {part.text}
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
-
-              </div>
-
-            </div>
-          ))}
-
+              default:
+                return null;
+            }
+          })}
         </div>
-      </div>
+      ))}
 
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
 
-      <div className="border-t bg-white p-4">
+          if (!input.trim()) return;
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
+          sendMessage({
+            text: input,
+          });
 
-            sendMessage({
-              text: input,
-            });
-
-            setInput('');
-          }}
-          className="max-w-4xl mx-auto"
-        >
-
-          <div className="flex space-x-2">
-
-            <input
-              className="flex-1 p-3 border rounded-lg"
-              value={input}
-              placeholder="Say something..."
-              onChange={(e) => setInput(e.target.value)}
-            />
-
-            <button
-              type="submit"
-              className="px-4 py-3 bg-rose-500 text-white rounded-lg hover:bg-rose-600"
-            >
-              Send
-            </button>
-
-          </div>
-
-        </form>
-
-      </div>
-
+          setInput('');
+        }}
+      >
+        <input
+          className="fixed bottom-5 w-full max-w-md rounded border p-2 shadow red:bg-zinc-900"
+          value={input}
+          placeholder="Ask about the weather..."
+          onChange={(e) => setInput(e.target.value)}
+        />
+      </form>
     </div>
   );
 }
