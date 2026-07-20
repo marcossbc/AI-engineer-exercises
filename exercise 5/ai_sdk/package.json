@@ -9,22 +9,28 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@ai-sdk/openai": "^7.0.22",
-    "@ai-sdk/react": "^3.0.22",
-    "ai": "^7.0.22",
-    "next": "16.2.10",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
+    "@ai-sdk/openai": "^2.0.56",
+    "@ai-sdk/react": "^2.0.80",
+    "ai": "^5.0.81",
+    "dotenv": "^17.4.2",
+    "express-validator": "^7.3.2",
+    "mongodb": "^6.21.0",
+    "mongoose": "^8.24.1",
+    "next": "^16.2.10",
+    "node-fetch": "^3.3.2",
+    "openai": "^6.48.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.10",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^10.7.0",
+    "eslint-config-next": "^16.2.10",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3"
   }
 }
