@@ -92,15 +92,44 @@ export const accountRelations = relations(account, ({ one }) => ({
   }),
 }));
 
-export const TestTable = pgTable("test_table", {
-    id: text("id").primaryKey(), 
-    name: text("name").notNull(),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    updatedAt: timestamp("updated_at")
-      .defaultNow()
-      .$onUpdate(() => /* @__PURE__ */ new Date())
-      .notNull(),
-});   
+export const conversation = pgTable("conversation", {
+  id: text("id").primaryKey(),
+  title: text("title"),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
 
+export const message = pgTable("message", {
+  id: text("id").primaryKey(),
+  content: text("content").notNull(),
+  role: text("role").notNull(),
+  conversationId: text("conversation_id")
+    .notNull()
+    .references(() => conversation.id, { onDelete: "cascade" }),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
 
-export const schema ={user, session, account, verification, userRelations, sessionRelations, accountRelations};
+export const schema = {
+  user,
+  session,
+  account,
+  verification,
+  conversation,
+  message,
+  userRelations,
+  sessionRelations,
+  accountRelations,
+};
